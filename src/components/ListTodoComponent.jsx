@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getAllTodos } from "../services/TodoServices";
+import { completeTodo, deleteTodo, getAllTodos, inCompleteTodo } from "../services/TodoServices";
 import { useNavigate } from "react-router-dom";
 
 const ListTodoComponent = () => {
@@ -23,6 +23,22 @@ const ListTodoComponent = () => {
     function updateTodo(id){
         navigate(`/update-todo/${id}`);
     }
+    function removeTodo(id){
+        deleteTodo(id).then(()=>{
+            listTodos();
+        }).catch(error=>console.error(error))
+    }
+    function markCompleteTodo(id){
+        completeTodo(id).then(()=>{
+            listTodos();
+        }).catch(error=>console.error(error))
+    }
+    function markInCompleteTodo(id){
+        inCompleteTodo(id).then(()=>{
+            listTodos();
+        }).catch(error=>console.error(error))
+    }
+
 
   return (
     <div className="container">
@@ -47,6 +63,9 @@ const ListTodoComponent = () => {
                                     <td>{todo.completed ? 'YES' : 'NO'}</td>
                                     <td>
                                         <button className="btn btn-info" onClick={()=>updateTodo(todo.id)}>Update</button>
+                                        <button className="btn btn-danger" onClick={()=>removeTodo(todo.id)} style={{marginLeft:"10px"}}>Delete</button>
+                                        <button className="btn btn-success" onClick={()=>markCompleteTodo(todo.id)} style={{marginLeft:"10px"}}>Complete</button>
+                                        <button className="btn btn-success" onClick={()=>markInCompleteTodo(todo.id)} style={{marginLeft:"10px"}}>InComplete</button>
                                     </td>
                                 </tr>
                             )
