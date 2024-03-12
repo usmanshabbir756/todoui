@@ -4,7 +4,7 @@ const HeaderCompnent = () => {
     <div>
         <header>
             <nav className="navbar navbar-dark bg-dark">
-                <a className="navbar-brand" href="#">
+                <a className="navbar-brand" href="/">
                     Todo Managment Application
                 </a>
             </nav>
