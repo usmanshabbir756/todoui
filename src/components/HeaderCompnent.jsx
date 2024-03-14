@@ -25,7 +25,6 @@ const HeaderCompnent = () => {
                     <NavLink to="/login" className="nav-link">Login</NavLink>
                   </li>
                 </ul>
-
             </nav>
         </header>
        
