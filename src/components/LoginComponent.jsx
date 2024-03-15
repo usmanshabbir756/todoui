@@ -1,13 +1,19 @@
 import { useState } from "react"
+import { loginApiCall } from "../services/AuthService";
+import { useNavigate } from "react-router-dom";
 
 const LoginComponent = () => {
     const [usernameOrEmail,setUsernameOrEmail] = useState('')
     const [password,setPassword] = useState('');
+    const navigate=useNavigate();
 
     function handelLoginForm(e){
         e.preventDefault();
-        const login={usernameOrEmail,password};
-        console.log(login);
+        const loginObj={usernameOrEmail,password};
+        loginApiCall(loginObj).then((response)=>{
+            console.log(response.data);
+            navigate('/todos');
+        }).catch((error)=>console.error(error));
 
     }
 
